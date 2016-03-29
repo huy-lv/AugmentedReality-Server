@@ -1,0 +1,36 @@
+<% if !flash[:notice].blank? %>
+  <div class="alert alert-info">
+  <%= flash[:notice] %>
+  </div>
+<% end %>
+<br />
+<%= link_to "New marker", new_marker_path, class: "btn btn-primary" %>
+<br />
+<br />
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Image</th>
+      <th>Iset</th>
+      <th>Fset</th>
+      <th>Fset3</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @markers.each do |marker| %>
+      <tr>
+        <td><%= marker.id %></td>
+        <td><%= marker.name %></td>
+        <td><%= image_tag marker.image, size: '120x150' %></td>
+        <td><%= marker.iset_url %></td>
+        <td><%= marker.fset_url %></td>
+        <td><%= marker.fset3_url %></td>
+        <td><%= link_to "Delete", marker_path(marker), method: :delete, class: "btn btn-primary" %></td>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
